@@ -86,7 +86,7 @@ $router->get('/country', function() use($router) {
 $router->get('/country-complex', function() use($router) {
     $results = app('db')->select("Select apps_countries.*, apps_countries_detailed.* from apps_countries left join apps_countries_detailed on apps_countries.country_code = apps_countries_detailed.countryCode order by apps_countries_detailed.geonameId desc");
     foreach($results as $key => $result) {
-        $result['newValue'] = 'index_' . $key;
+        $result->newValue = 'index_' . $key;
     }
     return response()->json(['data' => $results]);
 });
